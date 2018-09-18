@@ -8,10 +8,10 @@ class HomePage extends Component {
         return (<div className="container-fluid">
             <h1>Tiny Calendar</h1>
             <div className="row">
-                <div className="col">
+                <div className="col-sm-4">
                     <CalendarControls />
                 </div>
-                <div className="col">
+                <div className="col-sm-8">
                     <CalendarView />
                 </div>
             </div>
