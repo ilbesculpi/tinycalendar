@@ -1,4 +1,5 @@
 import * as moment from 'moment';
+import { settings } from './Settings';
 
 /**
  * Utility class to handle the logic for generating the calendar dates.
@@ -6,6 +7,8 @@ import * as moment from 'moment';
  * should not be exported nor exposed to other classes.
  */
 class CalendarHelper {
+
+
 
     /**
      * Gets the dates that span between the start date and the number of days.
@@ -15,7 +18,7 @@ class CalendarHelper {
      */
     getCalendarDates(date, numberOfDays) {
 
-        const startDate = moment(date, 'YYYY-MM-DD');
+        const startDate = moment(date, settings.dateFormat);
         if( !date || !startDate ) {
             throw new Error("Must provide a valid date");
         }
@@ -28,11 +31,37 @@ class CalendarHelper {
         // calculate last day that should be generated
         const endDate = startDate.clone().add(numberOfDays - 1, 'days');
 
+        // generate days
+        const currentDate = startDate.clone();
+
+        const getWeekDays = (date) => {
+            const weekStart = date.clone().startOf('week');
+            return [
+                weekStart.format(settings.dateFormat),
+                weekStart.add(1, 'days').format(settings.dateFormat),
+                weekStart.add(1, 'days').format(settings.dateFormat),
+                weekStart.add(1, 'days').format(settings.dateFormat),
+                weekStart.add(1, 'days').format(settings.dateFormat),
+                weekStart.add(1, 'days').format(settings.dateFormat),
+                weekStart.add(1, 'days').format(settings.dateFormat)
+            ];
+        };
+
+        const weeks = [];
+        while( currentDate.startOf('week').isSameOrBefore(endDate) ) {
+            const details = { 
+                week: currentDate.get('week'),
+                days: getWeekDays(currentDate)
+            };
+            weeks.push(details);
+            currentDate.add(1, 'week');
+        }
+
         return {
-            startDate: startDate.format('YYYY-MM-DD'),
-            endDate: endDate.format('YYYY-MM-DD'),
+            startDate: startDate.format(settings.dateFormat),
+            endDate: endDate.format(settings.dateFormat),
             numberOfDays: numberOfDays,
-            weeks: []
+            weeks: weeks
         };
 
     }
