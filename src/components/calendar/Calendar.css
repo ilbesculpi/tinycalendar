@@ -19,3 +19,16 @@ table.calendar td {
     padding: 8px 4px;
     font-size: 1.0rem;
 }
+
+table.calendar td.invalid {
+    text-indent: -9999px;
+    background-color: lightgrey !important;
+}
+
+table.calendar td.weekday {
+    background-color: lightgreen;
+}
+
+table.calendar td.weekend {
+    background-color: lightyellow;
+}
