@@ -19,8 +19,15 @@ class CalendarControls extends Component {
             countryCode: props.countryCode
         };
 
+        this.starterValues = {
+            startDate: props.startDate,
+            numberOfDays: props.numberOfDays,
+            countryCode: props.countryCode
+        };
+
         this.handleChange = this.handleChange.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
+        this.resetForm = this.resetForm.bind(this);
     }
 
     handleChange(event) {
@@ -29,41 +36,50 @@ class CalendarControls extends Component {
         if( name === 'numberOfDays' ) {
             value = parseInt(event.target.value);
         }
-        console.log('event change: ', { [name]: value });
         this.setState({
             [name]: value
         });
     }
 
     handleSubmit(event) {
-        event.preventDefault();
+        event && event.preventDefault();
         if( this.props.onChange !== undefined ) {
             this.props.onChange(this.state);
         }
     }
 
+    /**
+     * Resets the component with the original values provided.
+     */
+    resetForm(event) {
+        this.setState(this.starterValues, () => {
+                this.handleSubmit();
+            });
+    }
+
     render() {
         return (<form onSubmit={ this.handleSubmit }>
-            <div className="form-group">
-                <label htmlFor="startDate">Start Date</label>
-                <input name="startDate" type="date" className="form-control"
+            <fieldset className="form-group">
+                <label htmlFor="startDate" className="bmd-label-floating">Start Date</label>
+                <input name="startDate" name="startDate" type="date" className="form-control"
                     onChange={ this.handleChange }
                     value={ this.state.startDate } />
-            </div>
-            <div className="form-group">
-                <label htmlFor="numberOfDays">Number of Days</label>
-                <input name="numberOfDays" type="number" className="form-control"
+            </fieldset>
+            <fieldset className="form-group">
+                <label htmlFor="numberOfDays" className="bmd-label-floating">Number of Days</label>
+                <input id="numberOfDays" name="numberOfDays" type="number" className="form-control"
                     onChange={ this.handleChange }
-                    value={ this.state.numberOfDays } />
-            </div>
-            <div className="form-group">
-                <label htmlFor="countryCode">Country Code</label>
-                <input name="countryCode" type="text" className="form-control"
+                    value={ this.state.numberOfDays || '' } />
+            </fieldset>
+            <fieldset className="form-group">
+                <label htmlFor="countryCode" className="bmd-label-floating">Country Code</label>
+                <input id="countryCode" name="countryCode" type="text" className="form-control"
                     value={ this.state.countryCode }
                     onChange={ this.handleChange } />
-            </div>
+            </fieldset>
             <div className="form-group">
-                <button type="submit" className="btn btn-primary">Submit</button>
+                <button type="submit" className="btn btn-primary btn-raised btn-block">Submit</button>
+                <button type="button" className="btn btn-raised btn-block" onClick={ this.resetForm }>Reset</button>
             </div>
         </form>);
     }
