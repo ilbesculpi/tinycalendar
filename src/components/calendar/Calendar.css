@@ -1,0 +1,34 @@
+table.calendar {
+    width: 100%;
+    font-size: 12px;
+    margin-bottom: 4rem;
+}
+
+table.calendar, table.calendar th, table.calendar td {
+    border-collapse: collapse;
+    border: solid 1px #fff;
+    color: #404040;
+}
+
+table.calendar th {
+    text-align: center;
+}
+
+table.calendar td {
+    text-align: center;
+    padding: 4px 4px;
+    font-size: 1.0rem;
+}
+
+table.calendar td.invalid {
+    text-indent: -9999px;
+    background-color: lightgrey !important;
+}
+
+table.calendar td.weekday {
+    background-color: lightgreen;
+}
+
+table.calendar td.weekend {
+    background-color: lightyellow;
+}
