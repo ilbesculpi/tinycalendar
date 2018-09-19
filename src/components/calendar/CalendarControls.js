@@ -64,7 +64,7 @@ class CalendarControls extends Component {
                 <form onSubmit={ this.handleSubmit }>
                     <fieldset className="form-group">
                         <label htmlFor="startDate" className="bmd-label-floating">Start Date</label>
-                        <input name="startDate" name="startDate" type="date" className="form-control"
+                        <input id="startDate" name="startDate" type="date" className="form-control"
                             onChange={ this.handleChange }
                             value={ this.state.startDate } />
                     </fieldset>
