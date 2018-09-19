@@ -2,6 +2,7 @@
   "name": "tinycalendar",
   "version": "0.2.0",
   "private": true,
+  "homepage": "https://ilbesculpi.github.io/tinycalendar",
   "dependencies": {
     "moment": "^2.22.2",
     "react": "^16.5.2",
@@ -11,7 +12,9 @@
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
-    "pages": "react-scripts build && cp -R ./build ./docs",
+    "predeploy": "rm -fR ./docs && npm run build",
+    "deploy": "gh-pages -d build && cp -R ./build ./docs",
+    "pages": "yarn run deploy",
     "test": "react-scripts test --env=jsdom",
     "eject": "react-scripts eject"
   }
