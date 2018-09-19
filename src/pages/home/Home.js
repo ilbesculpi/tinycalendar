@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { CalendarControls, CalendarView } from '../../components/calendar/Calendar';
+import * as moment from 'moment';
 import './Home.css';
 
 class HomePage extends Component {
@@ -11,9 +12,16 @@ class HomePage extends Component {
         this.handleChange = this.handleChange.bind(this);
 
         // set initial values
+        const firstDateOfMonth = moment().startOf('month').startOf('day');
+        const lastDayOfMonth = moment().endOf('month').endOf('day');
+        const diff = moment.duration( lastDayOfMonth.diff(firstDateOfMonth) );
+        const numberOfDays = parseInt( diff.as('days') ) + 1;
+        console.log('diff', diff);
+        console.log('numberOfDays', numberOfDays);
+
         this.state = {
-            startDate: '2018-07-15',
-            numberOfDays: 90,
+            startDate: firstDateOfMonth.format('YYYY-MM-DD'),
+            numberOfDays: numberOfDays,
             countryCode: 'US'
         };
 
@@ -32,13 +40,13 @@ class HomePage extends Component {
         return (<div className="container-fluid">
             <h1>Tiny Calendar</h1>
             <div className="row">
-                <div className="col-sm-4">
+                <div className="col-sm-4 col-lg-2">
                     <CalendarControls startDate={ this.state.startDate }
                         numberOfDays={ this.state.numberOfDays }
                         countryCode={ this.state.countryCode }
                         onChange={ this.handleChange } />
                 </div>
-                <div className="col-sm-8">
+                <div className="col-sm-4 offset-md-2 col-lg-4 offset-lg-2">
                     <CalendarView startDate={ this.state.startDate }
                         numberOfDays={ this.state.numberOfDays }
                         countryCode={ this.state.countryCode } />
