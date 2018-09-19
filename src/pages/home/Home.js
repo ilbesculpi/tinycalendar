@@ -16,8 +16,8 @@ class HomePage extends Component {
         const lastDayOfMonth = moment().endOf('month').endOf('day');
         const diff = moment.duration( lastDayOfMonth.diff(firstDateOfMonth) );
         const numberOfDays = parseInt( diff.as('days') ) + 1;
-        console.log('diff', diff);
-        console.log('numberOfDays', numberOfDays);
+        //console.log('diff', diff);
+        //console.log('numberOfDays', numberOfDays);
 
         this.state = {
             startDate: firstDateOfMonth.format('YYYY-MM-DD'),
@@ -32,25 +32,22 @@ class HomePage extends Component {
      * @param {*} values 
      */
     handleChange(values) {
-        console.log('handleChange()', values);
+        console.log('values changed', values);
         this.setState(values);
     }
 
     render() {
-        return (<div className="container-fluid">
-            <h1>Tiny Calendar</h1>
-            <div className="row">
-                <div className="col-sm-4 col-lg-2">
-                    <CalendarControls startDate={ this.state.startDate }
-                        numberOfDays={ this.state.numberOfDays }
-                        countryCode={ this.state.countryCode }
-                        onChange={ this.handleChange } />
-                </div>
-                <div className="col-sm-4 offset-md-2 col-lg-4 offset-lg-2">
-                    <CalendarView startDate={ this.state.startDate }
-                        numberOfDays={ this.state.numberOfDays }
-                        countryCode={ this.state.countryCode } />
-                </div>
+        return (<div className="row">
+            <div className="col-sm-6 col-md-4 col-lg-3">
+                <CalendarControls startDate={ this.state.startDate }
+                    numberOfDays={ this.state.numberOfDays }
+                    countryCode={ this.state.countryCode }
+                    onChange={ this.handleChange } />
+            </div>
+            <div className="col-sm-6 col-md-8 col-lg-9">
+                <CalendarView startDate={ this.state.startDate }
+                    numberOfDays={ this.state.numberOfDays }
+                    countryCode={ this.state.countryCode } />
             </div>
         </div>);
     }

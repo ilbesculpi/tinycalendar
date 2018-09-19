@@ -11,8 +11,6 @@ class CalendarView extends Component {
 
     calculateDates() {
 
-        console.log('CalendarView :: calculateDates()');
-
         const helper = new CalendarHelper();
 
         const calendarDates = helper.getCalendarDates(this.props.startDate, this.props.numberOfDays);
@@ -21,8 +19,9 @@ class CalendarView extends Component {
         
         console.log('startDate', this.props.startDate);
         console.log('numberOfDays', this.props.numberOfDays);
+        console.log('endDate', calendarDates.endDate);
         //console.log('calendarDates = ', calendarDates);
-        console.log('DATES = ', datesToRender);
+        //console.log('DATES = ', datesToRender);
         return datesToRender;
     }
 
@@ -35,7 +34,7 @@ class CalendarView extends Component {
                         items={ row } />);
                     })
             : '';
-        return (<div>
+        return (<div className="row">
             { rows }
         </div>);
     }

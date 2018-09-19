@@ -1,34 +1,48 @@
-table.calendar {
-    width: 100%;
-    font-size: 12px;
+.calendar {
     margin-bottom: 4rem;
+    padding: 0.10rem;
 }
 
-table.calendar, table.calendar th, table.calendar td {
+.calendar table {
+    width: 100%;
+    font-size: 11px;
+    table-layout: fixed;
+}
+
+.calendar table, .calendar table th, .calendar table td {
     border-collapse: collapse;
     border: solid 1px #fff;
     color: #404040;
 }
 
-table.calendar th {
+.calendar table th {
     text-align: center;
+    padding: 4px 0px;
+    background-color: #fff;
 }
 
-table.calendar td {
+.calendar table td {
     text-align: center;
-    padding: 4px 4px;
-    font-size: 1.0rem;
+    padding: 4px 2px;
+    font-size: 0.8rem;
 }
 
-table.calendar td.invalid {
+.calendar table td.invalid {
     text-indent: -9999px;
     background-color: lightgrey !important;
 }
 
-table.calendar td.weekday {
+.calendar table td.weekday {
     background-color: lightgreen;
 }
 
-table.calendar td.weekend {
+.calendar table td.weekend {
     background-color: lightyellow;
+}
+
+
+/* Styles for Controls */
+
+.controls {
+    margin-bottom: 4rem;
 }
