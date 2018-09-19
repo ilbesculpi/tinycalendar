@@ -12,7 +12,9 @@ class HomePage extends Component {
                     <CalendarControls />
                 </div>
                 <div className="col-sm-8">
-                    <CalendarView />
+                    <CalendarView startDate="2018-07-31"
+                        numberOfDays="120"
+                        countryCode="US" />
                 </div>
             </div>
         </div>);
