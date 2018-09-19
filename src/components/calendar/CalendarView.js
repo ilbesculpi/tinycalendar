@@ -1,7 +1,12 @@
 import React, { Component } from 'react';
 import { CalendarHelper } from './CalendarHelper';
+import { CalendarItem } from './CalendarItem';
 import './Calendar.css';
 
+/**
+ * Renders a series of Calendars from the start date specified as input,
+ * spaning a number of days.
+ */
 class CalendarView extends Component {
 
     calculateDates() {
@@ -12,19 +17,27 @@ class CalendarView extends Component {
 
         const calendarDates = helper.getCalendarDates(this.props.startDate, this.props.numberOfDays);
         
-        const renderDays = helper.prepareDatesForRender(calendarDates);
+        const datesToRender = helper.prepareDatesForRender(calendarDates);
         
-        this.renderDays = renderDays;
-
         console.log('startDate', this.props.startDate);
         console.log('numberOfDays', this.props.numberOfDays);
         //console.log('calendarDates = ', calendarDates);
-        console.log('RENDER DAYS = ', renderDays);
+        console.log('DATES = ', datesToRender);
+        return datesToRender;
     }
 
     render() {
-        this.calculateDates();
-        return (<div>CalendarView</div>);
+        const dates = this.calculateDates();
+        const hasDates = dates.length > 0;
+        const rows = hasDates
+            ? dates.map((row, index) => {
+                    return (<CalendarItem key={ index }
+                        items={ row } />);
+                    })
+            : '';
+        return (<div>
+            { rows }
+        </div>);
     }
 
 }
