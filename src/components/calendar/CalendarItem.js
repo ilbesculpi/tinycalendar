@@ -44,7 +44,9 @@ class CalendarItem extends Component {
 
         // row for title
         const monthTitle = (<tr>
-            <th colSpan="7" className="text-center">{ this.getTitle() }</th>
+            <th colSpan="7" className="text-center">
+                <h5 className="card-title">{ this.getTitle() }</h5>
+            </th>
         </tr>);
 
         // rows for actual calendar days
@@ -60,15 +62,30 @@ class CalendarItem extends Component {
             </tr>);
         });
 
-        return (<table className="table calendar">
-            <thead>
-                { weekDays }
-                { monthTitle }
-            </thead>
-            <tbody>
-                { weeks }
-            </tbody>
-        </table>);
+        // generate 6 rows to make all boxes the same size
+        if( weeks.length < 6 ) {
+            for( let x = weeks.length; x < 6; x++ ) {
+                weeks.push(<tr key={ x }>
+                    <td colSpan="7">&nbsp;</td>
+                </tr>);
+            }
+        }
+
+        return (<div className="col-sm-12 col-md-6 col-lg-4">
+            <div className="card calendar">
+                <div className="card-body">
+                    <table className="table">
+                        <thead>
+                            { weekDays }
+                            { monthTitle }
+                        </thead>
+                        <tbody>
+                            { weeks }
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>);
     }
 
 }

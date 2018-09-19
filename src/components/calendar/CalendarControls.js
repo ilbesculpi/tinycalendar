@@ -58,30 +58,35 @@ class CalendarControls extends Component {
     }
 
     render() {
-        return (<form onSubmit={ this.handleSubmit }>
-            <fieldset className="form-group">
-                <label htmlFor="startDate" className="bmd-label-floating">Start Date</label>
-                <input name="startDate" name="startDate" type="date" className="form-control"
-                    onChange={ this.handleChange }
-                    value={ this.state.startDate } />
-            </fieldset>
-            <fieldset className="form-group">
-                <label htmlFor="numberOfDays" className="bmd-label-floating">Number of Days</label>
-                <input id="numberOfDays" name="numberOfDays" type="number" className="form-control"
-                    onChange={ this.handleChange }
-                    value={ this.state.numberOfDays || '' } />
-            </fieldset>
-            <fieldset className="form-group">
-                <label htmlFor="countryCode" className="bmd-label-floating">Country Code</label>
-                <input id="countryCode" name="countryCode" type="text" className="form-control"
-                    value={ this.state.countryCode }
-                    onChange={ this.handleChange } />
-            </fieldset>
-            <div className="form-group">
-                <button type="submit" className="btn btn-primary btn-raised btn-block">Submit</button>
-                <button type="button" className="btn btn-raised btn-block" onClick={ this.resetForm }>Reset</button>
+        return (
+        <div className="card controls">
+            <div className="card-body">
+                <form onSubmit={ this.handleSubmit }>
+                    <fieldset className="form-group">
+                        <label htmlFor="startDate" className="bmd-label-floating">Start Date</label>
+                        <input name="startDate" name="startDate" type="date" className="form-control"
+                            onChange={ this.handleChange }
+                            value={ this.state.startDate } />
+                    </fieldset>
+                    <fieldset className="form-group">
+                        <label htmlFor="numberOfDays" className="bmd-label-floating">Number of Days</label>
+                        <input id="numberOfDays" name="numberOfDays" type="number" className="form-control"
+                            onChange={ this.handleChange }
+                            value={ this.state.numberOfDays || '' } />
+                    </fieldset>
+                    <fieldset className="form-group">
+                        <label htmlFor="countryCode" className="bmd-label-floating">Country Code</label>
+                        <input id="countryCode" name="countryCode" type="text" className="form-control"
+                            value={ this.state.countryCode }
+                            onChange={ this.handleChange } />
+                    </fieldset>
+                    <div className="form-group">
+                        <button type="submit" className="btn btn-primary btn-raised btn-block">Submit</button>
+                        <button type="button" className="btn btn-raised btn-block" onClick={ this.resetForm }>Reset</button>
+                    </div>
+                </form>
             </div>
-        </form>);
+        </div>);
     }
 
 }
